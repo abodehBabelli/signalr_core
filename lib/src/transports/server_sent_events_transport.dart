@@ -47,6 +47,7 @@ class ServerSentEventsTransport implements Transport {
     if (_accessTokenFactory != null) {
       final token = await _accessTokenFactory();
       if (token != null) {
+        _url = _url.endsWith('#') ? _url.substring(0, _url.length - 2) : _url;
         _url += (!url.contains('?') ? '?' : '&') +
             'access_token=${Uri.encodeComponent(token)}';
       }
